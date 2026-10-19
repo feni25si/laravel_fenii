@@ -296,62 +296,75 @@
             <div class="col-12 mb-4">
                 <div class="card border-0 shadow components-section">
                     <div class="card-body">
-                        <form action="{{route('pelanggan.store')}}" method="POST">
+                        <form action="{{ route('pelanggan.store') }}" method="POST">
                             @csrf
                             <div class="row mb-4">
-                                <div class="col-lg-4 col-sm-6">
-                                    <!-- First Name -->
-                                    <div class="mb-3">
-                                        <label for="first_name" class="form-label">First name</label>
-                                        <input type="text" id="first_name" class="form-control" name="first_name" required>
-                                    </div>
-
-                                    <!-- Last Name -->
-                                    <div class="mb-3">
-                                        <label for="last_name" class="form-label">Last name</label>
-                                        <input type="text" id="last_name" class="form-control" name="last_name" required>
-                                    </div>
+                                <!-- First Name -->
+                                <div class="col-lg-4 col-sm-6 mb-3">
+                                    <label for="first_name" class="form-label">First name</label>
+                                    <input type="text" name="first_name" id="first_name" class="form-control 
+                                        @error('first_name') is-invalid @enderror" value="{{ old('first_name') }}">
+                                    @error('first_name')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
                                 </div>
 
-                                <div class="col-lg-4 col-sm-6">
-                                    <!-- Birthday -->
-                                    <div class="mb-3">
-                                        <label for="birthday" class="form-label">Birthday</label>
-                                        <input type="date" id="birthday" class="form-control" name="birthday">
-                                    </div>
-
-                                    <!-- Gender -->
-                                    <div class="mb-3">
-                                        <label for="gender" class="form-label">Gender</label>
-                                        <select id="gender" name="gender" class="form-select" name="gender">
-                                            <option value="">-- Pilih --</option>
-                                            <option value="Male">Male</option>
-                                            <option value="Female">Female</option>
-                                            <option value="Other">Other</option>
-                                        </select>
-                                    </div>
+                                <!-- Last Name -->
+                                <div class="col-lg-4 col-sm-6 mb-3">
+                                    <label for="last_name" class="form-label">Last name</label>
+                                    <input type="text" name="last_name" id="last_name" class="form-control 
+                                        @error('last_name') is-invalid @enderror" value="{{ old('last_name') }}">
+                                    @error('last_name')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
                                 </div>
 
-                                <div class="col-lg-4 col-sm-12">
-                                    <!-- Email -->
-                                    <div class="mb-3">
-                                        <label for="email" class="form-label">Email</label>
-                                        <input type="text" id="email" class="form-control" name="email" required>
-                                    </div>
+                                <!-- Birthday -->
+                                <div class="col-lg-4 col-sm-6 mb-3">
+                                    <label for="birthday" class="form-label">Birthday</label>
+                                    <input type="date" name="birthday" id="birthday" class="form-control 
+                                        @error('birthday') is-invalid @enderror" value="{{ old('birthday') }}">
+                                    @error('birthday')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
+                                </div>
 
-                                    <!-- Phone -->
-                                    <div class="mb-3">
-                                        <label for="phone" class="form-label">Phone</label>
-                                        <input type="text" id="phone" class="form-control" name="phone">
-                                    </div>
+                                <!-- Gender -->
+                                <div class="col-lg-4 col-sm-6 mb-3">
+                                    <label for="gender" class="form-label">Gender</label>
+                                    <select id="gender" name="gender" class="form-select @error('gender') is-invalid @enderror">
+                                        <option value="">-- Pilih --</option>
+                                        <option value="Male" {{ old('gender') == 'Male' ? 'selected' : '' }}>Male</option>
+                                        <option value="Female" {{ old('gender') == 'Female' ? 'selected' : '' }}>Female</option>
+                                    </select>
+                                    @error('gender')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
+                                </div>
 
-                                    <!-- Buttons -->
-                                    <div class="">
-                                        <button type="submit" class="btn btn-primary">Simpan</button>
-                                        <a href="{{ route('pelanggan.index') }}" class="btn btn-outline-secondary ms-2">Batal</a>
-                                    </div>
+                                <!-- Email -->
+                                <div class="col-lg-4 col-sm-6 mb-3">
+                                    <label for="email" class="form-label">Email</label>
+                                    <input type="email" name="email" id="email" class="form-control 
+                                    @error('email') is-invalid @enderror" value="{{ old('email') }}">
+                                    @error('email')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
+                                </div>
+
+                                <!-- Phone -->
+                                <div class="col-lg-4 col-sm-6 mb-3">
+                                    <label for="phone" class="form-label">Phone</label>
+                                    <input type="text" name="phone" id="phone" class="form-control 
+                                        @error('phone') is-invalid @enderror" value="{{ old('phone') }}">
+                                    @error('phone')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
                                 </div>
                             </div>
+
+                            <button type="submit" class="btn btn-primary">Simpan</button>
+                            <a href="{{ route('pelanggan.index') }}" class="btn btn-outline-secondary ms-2">Batal</a>
                         </form>
                     </div>
 
